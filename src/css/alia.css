@@ -1,0 +1,724 @@
+/* alia.css
+ *
+ * Copyright (c) 2014 .decimal, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+.preload * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+[alia-viewport] {
+    overflow-x: hidden;
+    padding-top: 51px;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Multiview Setup
+ */
+
+.multiview-body {
+    display: table-row;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.multiview-navigation,
+.multiview-viewport {
+    float: left;
+}
+
+.multiview-menu {
+    float: right;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Multiview Navigation
+ */
+
+.multiview-navigation {
+    z-index: 10;
+    position: relative;
+    height: 100%;
+    width: 200px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #e7e7e7;
+    -webkit-transition: margin-left .1s ease-in-out;
+    transition: margin-left .1s ease-in-out;
+    overflow: auto;
+}
+
+.collapse-navigation > .multiview-navigation {
+    margin-left: -200px;
+}
+
+.peek-navigation > .multiview-navigation {
+    margin-left: 0;
+    box-shadow: 1px 5px 5px 1px rgba(0,0,0,0.2);
+}
+
+.sticky-navigation > .multiview-navigation {
+    box-shadow: none;
+}
+
+.mulitview-navigation-linkset {
+    margin: 0;
+    padding: 5px 0;
+    list-style: none;
+}
+
+.multiview-navigation-header {
+    display: block;
+    padding: 3px 20px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #999;
+}
+
+.mulitview-navigation-linkset > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #777;
+    white-space: nowrap;
+}
+
+.mulitview-navigation-linkset > li > a:hover {
+    text-decoration: none;
+    background-color: #e7e7e7;
+    color: #333;
+}
+
+.mulitview-navigation-linkset > li.divider {
+    display: block;
+    margin: 9px auto;
+    width: 90%;
+    height: 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+.multiview-navigation-draggable {
+    z-index: 11;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    cursor: pointer;
+    background-image: url("../img/arrow-left-light.png");
+    background-position: 2px 50%;
+    background-repeat: no-repeat;
+}
+
+.multiview-navigation-draggable:hover {
+    background-color: #e7e7e7;
+    background-image: url("../img/arrow-left.png");
+}
+
+.collapse-navigation > .multiview-navigation-draggable {
+    background-image: url("../img/arrow-right-light.png");
+}
+
+.collapse-navigation > .multiview-navigation-draggable:hover {
+    background-image: url("../img/arrow-right.png");
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Multiview Viewport
+ */
+
+.multiview-viewport {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 200px;
+    right: 200px;
+    -webkit-transition: right .1s, left .1s ease-in-out;
+    transition: right .1s, left .1s ease-in-out;
+}
+
+.collapse-navigation > .multiview-viewport {
+    left: 0px;
+}
+
+.collapse-menu > .multiview-viewport {
+    right: 0px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Multiview Menu
+ */
+
+.multiview-menu {
+    z-index: 10;
+    position: relative;
+    height: 100%;
+    width: 200px;
+    background-color: #f8f8f8;
+    border-left: 1px solid #e7e7e7;
+    -webkit-transition: margin-right .1s ease-in-out;
+    transition: margin-right .1s ease-in-out;
+    overflow: auto;
+}
+
+.collapse-menu > .multiview-menu {
+    margin-right: -200px;
+}
+
+.peek-menu > .multiview-menu {
+    margin-right: 0;
+    box-shadow: 1px 5px 5px 1px rgba(0,0,0,0.2);
+}
+
+.sticky-menu > .multiview-menu {
+    box-shadow: none;
+}
+
+.multiview-menu-draggable {
+    z-index: 11;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    cursor: pointer;
+    background-image: url("../img/arrow-right-light.png");
+    background-position: 2px 50%;
+    background-repeat: no-repeat;
+}
+
+.multiview-menu-draggable:hover {
+    background-color: #e7e7e7;
+    background-image: url("../img/arrow-right.png");
+}
+
+.collapse-menu > .multiview-menu-draggable {
+    background-image: url("../img/arrow-left-light.png");
+}
+
+.collapse-menu > .multiview-menu-draggable:hover {
+    background-image: url("../img/arrow-left.png");
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Handle hiding menu
+ */
+
+.multiview-menu:empty,
+.multiview-menu:empty ~ .multiview-menu-draggable {
+    display: none;
+}
+
+.multiview-menu:empty ~ .multiview-viewport {
+    right: 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Fancy Headers and Viewports
+ */
+
+.fancy-header, .fancy-subheader {
+    display: block;
+}
+
+.fancy-viewport-content {
+    position: absolute;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Fancy Header
+ */
+
+.fancy-header {
+    width: 100%;
+    padding: 20px 20px 10px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e7e7e7;
+    overflow-x: visible;
+    overflow-y: visible;
+    white-space: nowrap;
+}
+
+.fancy-header > h1,
+.fancy-header > h2,
+.fancy-header > h3,
+.fancy-header > h4,
+.fancy-header > h5,
+.fancy-header > h6 {
+    margin: 0;
+    color: #777;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Fancy Subheader
+ */
+
+.fancy-subheader {
+    width: 100%;
+    padding: 5px 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e7e7e7;
+    white-space: nowrap;
+    overflow-x: visible;
+    overflow-y: visible;
+}
+
+.fancy-subheader > * {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+    width: auto;
+}
+
+.fancy-subheader > div.btn-group {
+    margin-left: 5px;
+}
+
+.fancy-subheader > button {
+    margin-left: 5px;
+}
+
+.fancy-subheader > input {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    width: auto;
+}
+
+.fancy-subheader > select {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    width: auto;
+}
+
+.fancy-subheader > div.btn-group:first-child,
+.fancy-subheader > button:first-child,
+.fancy-subheader > input:first-child,
+.fancy-subheader > select:first-child {
+    margin-left: 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Fancy Viewport Content
+ */
+
+.fancy-viewport-content {
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+}
+
+.fancy-header + .fancy-viewport-content {
+    top: 70px;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+}
+
+.fancy-header + .fancy-subheader + .fancy-viewport-content {
+    top: 115px;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+}
+
+.fancy-viewport-content > input {
+    width: auto;
+}
+
+[alia-viewport] > .fancy-viewport-content {
+    top: 50px;
+}
+
+[alia-viewport] > .fancy-header + .fancy-viewport-content {
+    top: 120px;
+}
+
+[alia-viewport] > .fancy-header + .fancy-subheader + .fancy-viewport-content {
+    top: 165px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Property List
+ */
+
+.property-list {
+    display: block;
+}
+
+.property-list > ul {
+    display: block;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.property-list > ul > li.item {
+    float: left;
+    width: 50%;
+    clear: both;
+}
+
+.property-list.skinny > ul > li.item {
+    width: 100%;
+}
+
+.property-list > ul > li.item-right {
+    float: right;
+    clear: right;
+}
+
+.property-list.skinny > ul > li.item-right {
+    float: left;
+    clear: both;
+}
+
+.property-list > ul > li.item .wrap {
+    line-height: 38px;
+    padding: 0 10px 0 150px;
+}
+
+.property-list .item .wrap .name {
+    word-wrap: break-word;
+    word-break: break-word;
+    max-width: 150px;
+    text-align: left;
+    float: left;
+    margin-left: -150px;
+}
+
+.property-list .item .wrap .normal {
+    word-wrap: break-word;
+    word-break: break-word;
+    display: inline-block;
+    max-width: 100%;
+    padding: 0 0 0 13px;
+    position: relative;
+    vertical-align: middle;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Editable Element
+ */
+
+.page-spinner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 3000;
+    width: 100%;
+    height: 100%;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Editable Element
+ */
+
+.editable-element {
+    display: inline-block;
+}
+
+form.editable-form {
+    display: inline-block;
+    position: relative;
+}
+
+span.editable-text {
+    vertical-align: middle;
+    border: 1px solid transparent;
+    display: none;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    cursor: text;
+    box-shadow: none;
+    border-radius: 4px 0 0 4px;
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+span.editable-text:hover {
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+span.editable-text + span.glyphicon {
+    opacity: 0;
+    top: 0;
+    vertical-align: middle;
+    height: 34px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 8px;
+    background-color: #f8f8f8;
+    -webkit-transition: opacity ease-in-out .15s;
+    transition: opacity ease-in-out .15s;
+}
+
+span.editable-text + span.glyphicon.visible {
+    opacity: 1;
+}
+
+span.editable-text ~ span.spinner {
+    display: inline-block;
+    z-index: 2;
+    vertical-align: middle;
+    width: 34px;
+    height: 34px;
+    /*background-color: #f8f8f8;*/
+}
+
+div.spinner {
+    z-index: 2e9;
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+td.footer-cell {
+    height: 39px;
+}
+
+td.footer-cell:empty {
+    height: 0;
+}
+
+.editable-element > span.glyphicon,
+.editable-element.text-toggle > span.spinner {
+    display: none;
+}
+
+.editable-element.text-toggle > span.glyphicon {
+    display: inline-block;
+}
+
+.editable-element input {
+    vertical-align: middle;
+    display: inline-block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 0 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.editable-element select {
+    vertical-align: middle;
+    display: inline-block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 0 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.text-toggle span.editable-text {
+    display: inline-block;
+}
+
+.text-toggle form.editable-form {
+    display: none;
+}
+
+.save-options {
+    position: absolute;
+    top: 37px;
+    left: auto;
+    right: 0;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 3px 6px rgba(111,111,111,0.2);
+    padding: 3px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Hidden Element
+ */
+
+.hidden {
+    display: none;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Data Tables
+ */
+
+.dataTables_length > label {
+    font-weight: normal;
+    padding-top: .755em;
+}
+
+.fixed-table-wrapper {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    overflow-y: auto;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Tables
+ */
+
+/* Pagination */
+tfoot select.form-control {
+    width: auto;
+}
+
+tfoot ul.pagination {
+    margin: 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Typeahead
+ */
+
+.form-group span.twitter-typeahead {
+    width: 100%;
+}
+
+.tt-dropdown-menu {
+    width: 100%;
+    margin-top: 2px;
+    z-index: 1500;
+    background-color: white;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 8px;
+    -border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    padding: 6px 0 0 0;
+}
+
+.tt-suggestion {
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+.tt-suggestion.tt-cursor {
+    background-color: #428bca;
+    color: white;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Alert
+ */
+
+[alia-alerts] {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2000;
+    width: 300px;
+    height: auto;
+}
+
+.alia-alert {
+    margin-top: 10px;
+    padding: 25px 10px;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border: 1px solid #e7e7e7;
+    -webkit-border-radius: 8px;
+    -border-radius: 8px;
+    border-radius: 8px;
+}
+
+.alia-alert:first-child {
+    margin-top: 0;
+}
+
+.alia-alert.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alia-alert.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alia-alert.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alia-alert.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Misc
+ */
+
+.clear {
+    clear: both;
+}
