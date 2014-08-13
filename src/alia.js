@@ -1020,4 +1020,103 @@
         return this;
     };
 
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Public definitions
+
+
+    alia.defineControl = function(opts, ctor) {
+        var name = 'do' + opts.name.charAt(0).toUpperCase() + opts.name.slice(1);
+        alia[name] = function(parent, options) {
+            var component = ctor.call(parent, options);
+            return component;
+        };
+    };
+
+    alia.defineHeader = function(opts, ctor) {
+        alia.resolve(opts.dependencies).then(function(deps) {
+            alia.header.empty();
+            var fcn = ctor.apply(null, deps);
+            var component = fcn.call(null, alia.header);
+            return component;
+        });
+    };
+
+    alia.defineLayout = function(opts, ctor) {
+        var name = 'layout' + opts.name.charAt(0).toUpperCase() + opts.name.slice(1);
+        alia[name] = function(parent, options, callback) {
+            var component = ctor.call(parent, options);
+            return function() {
+                callback(component);
+                return component;
+            }();
+        };
+    };
+
+    alia.defineMultiview = function(opts, ctor) {
+        alia.defineView({
+            path: opts.path,
+            dependencies: opts.dependencies,
+            multiview: true
+        }, ctor);
+    };
+
+    alia.defineProvider = function(opts, ctor) {
+        if (typeof opts.name !== 'string' || opts.name.substr(0, 1) !== '$') {
+            throw new Error('Missing or invalid provider name');
+        }
+        var args = [];
+        var deps = opts.dependencies;
+        if (deps) {
+            for (var i = 0; i < deps.length; ++i) {
+                if (providers.hasOwnProperty(deps[i])) {
+                    args.push(providers[deps[i]]);
+                } else {
+                    throw new Error('Unable to resolve provider dependency');
+                }
+            }
+        }
+        providers[opts.name] = ctor.apply(null, args);
+    };
+
+    alia.resolve = function(dependencies, args, data) {
+        args = args || [];
+        for (var i = 0; i < dependencies.length; ++i) {
+            if (data && data.hasOwnProperty(dependencies[i])) {
+                args.push(data[dependencies[i]]);
+            } else if (providers.hasOwnProperty(dependencies[i])) {
+                args.push(providers[dependencies[i]]);
+            } else if (services.hasOwnProperty(dependencies[i])) {
+                args.push(services[dependencies[i]].accessor);
+            }
+        }
+        return alia.all(args);
+    };
+
+
+    alia.defineService = function(options, constructor) {
+        console.log("--- DEFINE SERVICE:", options.name);
+        services[options.name] = {
+            dependencies: options.dependencies,
+            constructor: constructor,
+            accessor: alia.resolve(options.dependencies).then(function(deps) {
+                return constructor.apply(null, deps);
+            })
+        };
+    };
+
+    alia.defineView = function(opts, ctor) {
+        var $route = providers.$route;
+        if (!$route) {
+            throw new Error("Missing route provider");
+        }
+        views[opts.path] = {
+            opts: opts,
+            ctor: ctor
+        };
+        $route.when(opts, ctor);
+        if (opts.default === true) {
+            $route.otherwise(opts, ctor);
+        }
+    };
+
 }(window.alia = window.alia || {}));

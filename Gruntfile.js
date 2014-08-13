@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
     'use strict';
 
+    process.env['mocha-json-spec-dest'] = './coverage/result.json';
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -10,13 +12,14 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'src/alia.js', 
+                    'src/alia.js',
                     'src/url.js',
                     'src/utils.js',
                     'src/components/*.js',
                     'src/providers/jquery.js',
                     'src/providers/window.js',
                     'src/providers/location.js',
+                    'src/providers/localStorage.js',
                     'src/providers/route.js',
                     'src/providers/request.js'
                 ],
@@ -27,7 +30,8 @@ module.exports = function(grunt) {
             files: {
                 src: ['src/*.js',
                     'src/providers/*.js',
-                    'src/components/*.js'],
+                    'src/components/*.js'
+                ],
                 globals: {
                     $: true,
                     Spinner: true,
@@ -48,15 +52,8 @@ module.exports = function(grunt) {
                 dest: 'dist/<%= pkg.name %>.min.js'
             }
         },
-        mochaSelenium: {
-            options: {
-                reporter: 'spec',
-                timeout: 5000,
-                usePromises: true
-            },
-            firefox: {
-                src: ['test/lib/*.js']
-            }
+        mocha_phantomjs: {
+            all: ['test/*.html']
         }
     });
 
@@ -64,9 +61,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-mocha-selenium');
+    grunt.loadNpmTasks('grunt-mocha-phantomjs');
 
     // Default task(s).
-    grunt.registerTask('test', ['mochaSelenium']);
+    grunt.registerTask('test', ['mocha_phantomjs']);
     grunt.registerTask('default', ['concat', 'uglify', 'test']);
 };

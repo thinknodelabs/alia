@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>tests</title>
+    <link href="../node_modules/mocha/mocha.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../src/css/ladda-themeless.min.css">
+    <link rel="stylesheet" href="../src/css/highlight.css">
+    <link rel="stylesheet" href="../src/css/datepicker3.css">
+    <link rel="stylesheet" href="../src/css/alia.css">
+  </head>
+  <body>
+
+      <!-- View -->
+      <div alia-header></div>
+      <div alia-viewport></div>
+      <div alia-footer></div>
+      <div alia-alerts></div>
+      
+      <!-- Required for browser reporter -->
+      <div id="mocha"></div>
+      <script src="../node_modules/mocha/mocha.js" type="text/javascript" charset="utf-8"></script>
+      <script src="../node_modules/chai/chai.js" type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript" charset="utf-8">
+          mocha.ui('bdd');
+          expect = chai.expect;
+      </script>
+
+      <!-- Libraries -->
+      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <script src="http://disfk8kjqez31.cloudfront.net/base64-1.0.0/base64.min.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../lib/spin.min.js"></script>
+      <script src="../lib/ladda.min.js"></script>
+      <script src="../lib/ladda.jquery.min.js"></script>
+      <script src="../lib/bluebird.js"></script>
+      <script src="../lib/bootstrap-datepicker.js"></script>
+      <script src="../lib/lodash.min.js"></script>
+      <script src="../lib/bacon.js"></script>
+      <script src="../lib/bacon.model.js"></script>
+      <script src="../lib/bacon.jquery.js"></script>
+      <script src="../lib/highlight.pack.js"></script>
+      <script src="../lib/markdown.converter.js"></script>
+      <script src="../lib/markdown.sanitizer.js"></script>
+      <script src="../lib/markdown.extra.js"></script>
+      <script src="../lib/typeahead.bundle.js"></script>
+      <script src="../lib/bloodhound.min.js"></script>
+
+      <!-- Alia -->
+      <script src="../src/alia.js"></script>
+      <!-- <script src="../src/accessors.js"></script> -->
+      <script src="../src/url.js"></script>
+      <script src="../src/utils.js"></script>
+
+      <!-- Providers -->
+      <script src="../src/providers/jquery.js"></script>
+      <script src="../src/providers/window.js"></script>
+      <script src="../src/providers/localStorage.js"></script>
+      <script src="../src/providers/location.js"></script>
+      <script src="../src/providers/route.js"></script>
+      <script src="../src/providers/request.js"></script>
+
+      <script src="spec/alia.spec.js" type="text/javascript" charset="utf-8"></script>
+      <script src="spec/url.spec.js" type="text/javascript" charset="utf-8"></script>
+
+      <script type="text/javascript" charset="utf-8">
+        if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+        else { mocha.run(); }
+      </script>
+  </body>
+</html>
