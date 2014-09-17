@@ -40,7 +40,7 @@
     };
 
     alia.isArrayLike = function(obj) {
-        if (obj === null || isWindow(obj)) {
+        if (obj === null || alia.isWindow(obj)) {
             return false;
         }
 
@@ -49,7 +49,7 @@
         if (obj.nodeType === 1 && length) {
             return true;
         }
-
+        
         return alia.isString(obj) || alia.isArray(obj) || length === 0 ||
             typeof length === 'number' && length > 0 && (length - 1) in obj;
     };

@@ -778,6 +778,10 @@
         $('#' + this.id()).removeAttr(name);
     };
 
+    Component.prototype.remove = function() {
+        $('#' + this.id()).remove();
+    };
+
     Component.prototype.slideDownOnClick = function(button, callback) {
         var self = this;
         $('#' + button.id()).click(function() {

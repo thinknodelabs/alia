@@ -142,7 +142,7 @@
         function update(event, url) {
             var multiview, workspace, signature;
             var next = parseRoute();
-            if (!current || current.path !== next.path) {
+            if (!current || current.path !== next.path || !_.isEqual(current.params, next.params)) {
                 current = next;
                 load();
             } else if (current.type === 'workspace' && typeof next.query.task === 'string') {
